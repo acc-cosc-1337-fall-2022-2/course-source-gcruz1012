@@ -52,13 +52,13 @@ int main()
 		}
 		else if (user_choice == 3)
 		{
-			cout<<"Are you sure you want to exist?"<<"\n";
+			cout<<"Are you sure you want to exit?"<<"\n";
 			cout<<"1-Yes"<<"\n";
 			cout<<"2-No"<<"\n";
 
 			cin>>user_choice;
 
-			if (user_choice == 2)
+			if (user_choice == 1)
 			{
 				user_choice = 3;
 			}
