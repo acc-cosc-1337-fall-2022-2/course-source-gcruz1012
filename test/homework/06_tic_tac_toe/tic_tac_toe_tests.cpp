@@ -14,11 +14,19 @@ TEST_CASE("Test first player set to X")
 		verify that get_player funct returns X
 	*/
 
+
+
 	TicTacToe game0;
+
+
 
 	game0.start_game("X");
 
+
+
 	REQUIRE(game0.get_player() == "X");
+
+
 }
 
 TEST_CASE("Test first player set to O")
@@ -55,17 +63,32 @@ TEST_CASE("Test game over if 9 slots are selected")
 
 
 	game2.mark_board(1);
-	game2.mark_board(5);
-	game2.mark_board(3);
-	game2.mark_board(2);
-	game2.mark_board(8);
-	game2.mark_board(7);
-	game2.mark_board(9);
-	game2.mark_board(6);
-	game2.mark_board(4);
+	REQUIRE(game2.game_over() == false);
 
-	game2.game_over();
-	
+	game2.mark_board(5);
+	REQUIRE(game2.game_over() == false);
+
+	game2.mark_board(3);
+	REQUIRE(game2.game_over() == false);
+
+	game2.mark_board(2);
+	REQUIRE(game2.game_over() == false);
+
+	game2.mark_board(8);
+	REQUIRE(game2.game_over() == false);
+
+	game2.mark_board(7);
+	REQUIRE(game2.game_over() == false);
+
+	game2.mark_board(9);
+	REQUIRE(game2.game_over() == false);
+
+	game2.mark_board(6);
+	REQUIRE(game2.game_over() == false);
+
+	game2.mark_board(4);
+	REQUIRE(game2.game_over() == true);
+
 	REQUIRE(game2.get_winner() == "C");
 	
 	
@@ -86,10 +109,19 @@ TEST_CASE("Test win by first column")
 	game3.start_game("X");
 
 	game3.mark_board(1);
+	REQUIRE(game3.game_over() == false);
+
 	game3.mark_board(2);
+	REQUIRE(game3.game_over() == false);
+
 	game3.mark_board(4);
+	REQUIRE(game3.game_over() == false);
+
 	game3.mark_board(3);
+	REQUIRE(game3.game_over() == false);
+	
 	game3.mark_board(7);
+	
 
 	REQUIRE(game3.game_over() == true);
 	
@@ -109,9 +141,17 @@ TEST_CASE("Test win by second column")
 	game4.start_game("X");
 
 	game4.mark_board(2);
+	REQUIRE(game4.game_over() == false);
+
 	game4.mark_board(1);
+	REQUIRE(game4.game_over() == false);
+
 	game4.mark_board(5);
+	REQUIRE(game4.game_over() == false);
+
 	game4.mark_board(4);
+	REQUIRE(game4.game_over() == false);
+
 	game4.mark_board(8);
 
 	REQUIRE(game4.game_over() == true);
@@ -132,9 +172,17 @@ TEST_CASE("Test win by third column")
 	game5.start_game("X");
 
 	game5.mark_board(3);
+	REQUIRE(game5.game_over() == false);
+
 	game5.mark_board(1);
+	REQUIRE(game5.game_over() == false);
+
 	game5.mark_board(6);
+	REQUIRE(game5.game_over() == false);
+
 	game5.mark_board(2);
+	REQUIRE(game5.game_over() == false);
+
 	game5.mark_board(9);
 
 	REQUIRE(game5.game_over() == true);
@@ -155,9 +203,17 @@ TEST_CASE("Test win by first row")
 	game6.start_game("X");
 
 	game6.mark_board(1);
+	REQUIRE(game6.game_over() == false);
+
 	game6.mark_board(4);
+	REQUIRE(game6.game_over() == false);
+
 	game6.mark_board(2);
+	REQUIRE(game6.game_over() == false);
+
 	game6.mark_board(5);
+	REQUIRE(game6.game_over() == false);
+
 	game6.mark_board(3);
 
 	REQUIRE(game6.game_over() == true);
@@ -178,9 +234,17 @@ TEST_CASE("Test win by second row")
 	game7.start_game("X");
 
 	game7.mark_board(4);
+	REQUIRE(game7.game_over() == false);
+
 	game7.mark_board(1);
+	REQUIRE(game7.game_over() == false);
+
 	game7.mark_board(5);
+	REQUIRE(game7.game_over() == false);
+
 	game7.mark_board(2);
+	REQUIRE(game7.game_over() == false);
+
 	game7.mark_board(6);
 
 	REQUIRE(game7.game_over() == true);
@@ -201,9 +265,17 @@ TEST_CASE("Test win by third row")
 	game8.start_game("X");
 
 	game8.mark_board(7);
+	REQUIRE(game8.game_over() == false);
+
 	game8.mark_board(1);
+	REQUIRE(game8.game_over() == false);
+
 	game8.mark_board(8);
+	REQUIRE(game8.game_over() == false);
+
 	game8.mark_board(2);
+	REQUIRE(game8.game_over() == false);
+
 	game8.mark_board(9);
 
 	REQUIRE(game8.game_over() == true);
@@ -224,9 +296,17 @@ TEST_CASE("Test win diagonally from top left")
 	game9.start_game("X");
 
 	game9.mark_board(1);
+	REQUIRE(game9.game_over() == false);
+
 	game9.mark_board(2);
+	REQUIRE(game9.game_over() == false);
+
 	game9.mark_board(5);
+	REQUIRE(game9.game_over() == false);
+
 	game9.mark_board(3);
+	REQUIRE(game9.game_over() == false);
+
 	game9.mark_board(9);
 
 	REQUIRE(game9.game_over() == true);
@@ -247,9 +327,17 @@ TEST_CASE("Test win diagonally from bottom left")
 	game10.start_game("X");
 
 	game10.mark_board(7);
+	REQUIRE(game10.game_over() == false);
+
 	game10.mark_board(1);
+	REQUIRE(game10.game_over() == false);
+
 	game10.mark_board(5);
+	REQUIRE(game10.game_over() == false);
+
 	game10.mark_board(2);
+	REQUIRE(game10.game_over() == false);
+
 	game10.mark_board(3);
 
 	REQUIRE(game10.game_over() == true);

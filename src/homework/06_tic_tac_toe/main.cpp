@@ -3,7 +3,7 @@
 using std::cin;
 using std::cout;
 using std::string;
-using std::vector;
+
 
 int main() 
 {
@@ -24,8 +24,8 @@ int main()
 	{
 		while (first_player != "X" && first_player != "O")
 		{
-		cout<<"Player One do you wanna use X or O?"<<"\n";
-		cin>>first_player;
+			cout<<"Player One do you wanna use X or O?"<<"\n";
+			cin>>first_player;
 		}
 		
 		cout<<first_player;
@@ -42,17 +42,16 @@ int main()
 
 
 		}
-			//if(game.game_over())
-			//{
-				if(game.get_winner()== "X"||game.get_winner() == "O")
-				{
-					cout<<"\n"<<"Winner: "<<game.get_winner()<<"\n";
-				}
-				else if(game.get_winner() == "C")
-				{
-				cout<<"\n"<<"Tie"<<"\n";
-				}
-			//}
+
+		if(game.get_winner()== "X"||game.get_winner() == "O")
+		{
+			cout<<"\n"<<"Winner: "<<game.get_winner()<<"\n";
+		}
+		else if(game.get_winner() == "C")
+		{
+			cout<<"\n"<<"Tie"<<"\n";
+		}
+
 
 		
 
