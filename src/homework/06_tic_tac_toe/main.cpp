@@ -26,20 +26,30 @@ int main()
 		{
 			cout<<"Player One do you wanna use X or O?"<<"\n";
 			cin>>first_player;
+
+			if(first_player != "X" && first_player != "O")
+			{
+				cout<<"Error: Player must be X or O"<<"\n";
+			}
+
 		}
 		
 		cout<<first_player;
 		game.start_game(first_player);
 		while(!game.game_over())
 		{
+			
 			cout<<"\n"<<"Which position (1-9) would you like to place your mark: ";
 			cin>>position;
-			
+			if(position<1 || position>9)
+			{
+				cout<<"Error: Position must be between 1 and 9";
+			}
+			else
+			{
 			game.mark_board(position);
 			game.display_board();
-			
-
-
+			}
 
 		}
 
@@ -52,8 +62,6 @@ int main()
 			cout<<"\n"<<"Tie"<<"\n";
 		}
 
-
-		
 
 		cout<<"\n"<<"Would you like to play again (Y/N): ";
 		cin>>choice;
