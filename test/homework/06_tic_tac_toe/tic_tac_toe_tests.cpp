@@ -1,9 +1,102 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
 #include "tic_tac_toe.h"
+#include "tic_tac_toe_manager.h"
 
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
+}
+TEST_CASE("Test TTT manager")
+{
+	TicTacToeManager manager;
+	TicTacToe gameM;
+
+	int o;
+	int x;
+	int t;
+	
+
+	gameM.start_game("X");
+
+	gameM.mark_board(1);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(2);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(4);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(3);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(7);
+	
+	REQUIRE(gameM.game_over() == true);
+
+	manager.save_game(gameM);
+
+
+
+	gameM.start_game("O");
+
+	gameM.mark_board(9);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(3);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(5);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(2);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(1);
+	REQUIRE(gameM.game_over() == true);
+
+	manager.save_game(gameM);
+
+
+	gameM.start_game("X");
+
+	gameM.mark_board(5);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(1);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(2);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(8);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(7);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(3);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(9);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(6);
+	REQUIRE(gameM.game_over() == false);
+
+	gameM.mark_board(4);
+	REQUIRE(gameM.game_over() == true);
+
+	manager.save_game(gameM);
+
+
+	manager.get_winner_total(o,x,t);
+
+	REQUIRE(o == 1);
+	REQUIRE(x == 1);
+	REQUIRE(t == 1);
+
+	
 }
 
 TEST_CASE("Test first player set to X")
@@ -119,11 +212,12 @@ TEST_CASE("Test win by first column")
 
 	game3.mark_board(3);
 	REQUIRE(game3.game_over() == false);
-	
+
 	game3.mark_board(7);
 	
 
 	REQUIRE(game3.game_over() == true);
+	REQUIRE(game3.get_winner() == "X"); 
 	
 }
 
@@ -155,6 +249,7 @@ TEST_CASE("Test win by second column")
 	game4.mark_board(8);
 
 	REQUIRE(game4.game_over() == true);
+	REQUIRE(game4.get_winner() == "X");
 }
 
 TEST_CASE("Test win by third column")
@@ -186,6 +281,7 @@ TEST_CASE("Test win by third column")
 	game5.mark_board(9);
 
 	REQUIRE(game5.game_over() == true);
+	REQUIRE(game5.get_winner() == "X");
 }
 
 TEST_CASE("Test win by first row")
@@ -217,6 +313,7 @@ TEST_CASE("Test win by first row")
 	game6.mark_board(3);
 
 	REQUIRE(game6.game_over() == true);
+	REQUIRE(game6.get_winner() == "X");
 }
 
 TEST_CASE("Test win by second row")
@@ -248,6 +345,7 @@ TEST_CASE("Test win by second row")
 	game7.mark_board(6);
 
 	REQUIRE(game7.game_over() == true);
+	REQUIRE(game7.get_winner() == "X");
 }
 
 TEST_CASE("Test win by third row")
@@ -279,6 +377,7 @@ TEST_CASE("Test win by third row")
 	game8.mark_board(9);
 
 	REQUIRE(game8.game_over() == true);
+	REQUIRE(game8.get_winner() == "X");
 }
 
 TEST_CASE("Test win diagonally from top left")
@@ -310,6 +409,7 @@ TEST_CASE("Test win diagonally from top left")
 	game9.mark_board(9);
 
 	REQUIRE(game9.game_over() == true);
+	REQUIRE(game9.get_winner() == "X");
 }
 
 TEST_CASE("Test win diagonally from bottom left")
@@ -341,4 +441,5 @@ TEST_CASE("Test win diagonally from bottom left")
 	game10.mark_board(3);
 
 	REQUIRE(game10.game_over() == true);
+	REQUIRE(game10.get_winner() == "X");
 }

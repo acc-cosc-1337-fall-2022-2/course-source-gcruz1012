@@ -6,20 +6,8 @@ using std::cout;
 using std::string;
 using std::vector;
 
-
-
-
-
 //private:
 
-
-
-    /*
-        Set player
-        if priv var player X player is O 
-        else player is X
-        (player is a priv var)
-    */
     void TicTacToe::set_next_player()
     {
         if (player == "X")
@@ -32,11 +20,6 @@ using std::vector;
         }
     }
 
-    /*
-        No params
-        return false if vector of string pegs has available slot
-        check for a " "(space) in each element otherwise return true
-    */
     bool TicTacToe::check_board_full()
     {
         int check = 1;
@@ -52,10 +35,6 @@ using std::vector;
         
     }
 
-    /*
-        No params
-        set all 9 elements to a " "(space)
-    */
     void TicTacToe::clear_board()
     {
         for (int i = 0; i<pegs.size(); i++ )
@@ -64,12 +43,6 @@ using std::vector;
         }
     }
 
-
-    /*
-        New(Hw7)
-            A column wins with marked vals 1,4,7 or 2,5,8 or 3,6,9 with all O's or X's
-            Remember- vector index starts at 0
-    */
     bool TicTacToe::check_column_win()
     {
         int check_column_win = 0;
@@ -89,10 +62,6 @@ using std::vector;
         return check_column_win;
     }
 
-    /*
-        New(Hw7)
-            A row wins with marked vals 1,2,3, or 4,5,6 or 7,8,9 with all O's or X's
-    */
     bool TicTacToe::check_row_win()
     {
         int check_row_win = 0;
@@ -102,7 +71,6 @@ using std::vector;
             
             if(pegs[i] + pegs[i+1] + pegs[i+2] == "XXX" || pegs[i] + pegs[i+1] + pegs[i+2] == "OOO")
             {
-                //cout<<pegs[i] + pegs[i+1] + pegs[i+2];
                 i = 9;
                 check_row_win = 1;
             }   
@@ -111,12 +79,7 @@ using std::vector;
         }while(i<9);
         return check_row_win;
     }
-    
 
-    /*
-        New(Hw7)
-            A diagnonal wins with marked vals 1,5,9, or 7,5,3 with all Os or Xs
-    */
     bool TicTacToe::check_diagonal_win()
     {
         int check_diagonal_win = 0;
@@ -128,16 +91,10 @@ using std::vector;
                 
                 check_diagonal_win = 1;
             }
-            //cout<<i<<" "<<i+x<<" "<< i+x*2;
         }
         return check_diagonal_win;
     }
 
-
-    /*
-        New(Hw7)
-            If player is X set winner to O otherwise set winner to X
-    */
     void TicTacToe::set_winner()
     {
         if(player == "X")
@@ -150,13 +107,39 @@ using std::vector;
         }
     }
     
+//friend 
+    std::ostream& operator<<(std::ostream& out, const TicTacToe& game)
+    {
+        out<<"\n";
+        
+            //iterate vector of string pegs:
 
+            for(int i=0; i < 9; i+=3)
+            {
+                out<<game.pegs[i]<<"|"<<game.pegs[i+1]<<"|"<<game.pegs[i+2]<<"\n";
+            }
+        
+        return out;
+    }
 
+    std::istream& operator>>(std::istream& in, TicTacToe& game)
+    {
+        int position;
+		cout<<"\n"<<"Which position (1-9) would you like to place your mark: ";
 
+		in>>position;
 
+		if(position<1 || position>9)
+		{
+			cout<<"Error: Position must be between 1 and 9";
+		}
 
-
-
+		else
+		{
+		    game.mark_board(position);
+		}
+        return in;
+    }
 
 
 
@@ -169,18 +152,6 @@ using std::vector;
 
 
 //public:
-    /* 
-        no parameters, return check_board_full function return val
-
-        HW 7 UPDATE:
-            determine win by checking for row/column/diagonal win(conditional structure)
-            if winner- call the set winner function and return true
-
-            check board full = true indicates a tie
-            if no winner by row/column/diagonal set winner variable to C and return true
-            
-            return false if no winner and board not full
-    */
     bool TicTacToe::game_over()
     {
         int check_game_over = 0;
@@ -201,15 +172,6 @@ using std::vector;
     
     }
 
-
-
-
-    /* 
-        Hw 6:
-            first_player func arg val must be X or O
-            in func player(priv var)= first_player fun arg
-            call clear_board func
-    */
     void TicTacToe::start_game(string first_player)
     {
         // validate first_player as X or O
@@ -224,11 +186,6 @@ using std::vector;
         }
     }
 
-    /*
-        Mark vector w position -1 equal to player(priv var)
-        Call set_next_player priv func
-    */
-
     void TicTacToe::mark_board(int position)
     {
         //Mark vector w position-1 equal to player(priv var)
@@ -240,28 +197,6 @@ using std::vector;
         set_next_player();
     }
 
-
-
-    /* const
-        No params
-        iterate vector of string pegs:
-            display a tictactoe board in 3x3 format
-    */
-    void TicTacToe::display_board()
-        const{
-            cout<<"\n";
-            //iterate vector of string pegs:
-
-            for(int i=0; i < 9; i+=3)
-            {
-                cout<<pegs[i]<<"|"<<pegs[i+1]<<"|"<<pegs[i+2]<<"\n";
-            }
-        }
-
-    /*
-        New(HW-7):
-            return winner
-    */
     string TicTacToe::get_winner()
     {
         //return winner
